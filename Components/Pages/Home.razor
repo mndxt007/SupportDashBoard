@@ -1,0 +1,31 @@
+﻿@page "/"
+@using SupportEngineerEfficiencyDashboard.Models
+@using SupportEngineerEfficiencyDashboard.Services
+@rendermode InteractiveServer
+@inject IDialogService DialogService
+@inject ICaseService CaseService
+
+<FluentDialogProvider />
+<FluentStack Orientation="Orientation.Horizontal" VerticalAlignment="VerticalAlignment.Top">
+<FluentDataGrid 
+    Items="@caseModels.AsQueryable()"
+                ResizableColumns=true
+                TGridItem="CaseModel"
+                OnRowFocus="HandleRowFocus"
+                Style="height: 405px; overflow:auto;"
+                ShowHover="true">
+    <PropertyColumn Property="@(p => p.CaseNumber)" Sortable="true" />
+    <PropertyColumn Property="@(p => p.Title)" Sortable="true" />
+    <PropertyColumn Property="@(p => p.CaseAge.Days)" Sortable="true"  />
+    <PropertyColumn Property="@(p => p.ProgramType)" Sortable="true" />
+</FluentDataGrid>
+<FluentDivider Style="height: 50px;" Role="DividerRole.Separator" Orientation="Orientation.Vertical"></FluentDivider>
+@if(selectedCase != null)
+    {
+        <FluentCard>
+            <FluentHeader Class="aling">
+                @selectedCase.Title
+                </FluentHeader>
+    </FluentCard>
+}
+</FluentStack>
