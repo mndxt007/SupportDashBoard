@@ -6,5 +6,6 @@
         public string Response { get; set; }
         public string Sentiment { get; set; }
         public int Priority { get; set; }
+        public int Health { get; set; }
     }
 }

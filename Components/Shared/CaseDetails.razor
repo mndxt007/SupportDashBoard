@@ -1,0 +1,44 @@
+﻿@using SupportEngineerEfficiencyDashboard.Models
+
+<FluentCard Style="margin-inline: 2%; overflow: auto; height: calc(100% - 0.5%); width: calc(100% - 4%); padding: 16px;">
+    <h2>@Case.Title</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 16px; margin-top: 16px;">
+        <FluentCard Width="350px" Height="250px" Style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+            <h3>
+                <FluentIcon Value="@(new Icons.Regular.Size24.Flag())" />
+                Priority
+            </h3>
+            <p style="font-size: 1.5rem; font-weight: bold;">@Case.CaseAnalysisModel.Priority</p>
+        </FluentCard>
+
+        <FluentCard Width="350px" Height="250px" Style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+            <h3>
+                <FluentIcon Value="@(new Icons.Regular.Size24.PlayCircle())" />
+                Action
+            </h3>
+            <p style="font-size: 1.5rem; font-weight: bold;">@Case.CaseAnalysisModel.Action</p>
+        </FluentCard>
+
+        <FluentCard Width="350px" Height="250px" Style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+            <h3>
+                <FluentIcon Value="@(new Icons.Regular.Size24.EmojiSmileSlight())" />
+                Sentiment
+            </h3>
+            <p style="font-size: 1.5rem; font-weight: bold;">@Case.CaseAnalysisModel.Sentiment</p>
+        </FluentCard>
+
+        <FluentCard Width="350px" Height="250px" Style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+            <h3>
+                <FluentIcon Value="@(new Icons.Regular.Size24.HeartPulse())" />
+                Health
+            </h3>
+            <p style="font-size: 1.5rem; font-weight: bold;">@Case.CaseAnalysisModel.Health</p>
+        </FluentCard>
+    </div>
+</FluentCard>
+
+
+@code {
+    [Parameter]
+    public CaseModel Case { get; set; }
+}

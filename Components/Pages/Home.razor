@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using SupportEngineerEfficiencyDashboard.Components.Shared
 @using SupportEngineerEfficiencyDashboard.Models
 @using SupportEngineerEfficiencyDashboard.Services
 @rendermode InteractiveServer
@@ -57,20 +58,7 @@
         <Panel2>
             @if (selectedCase != null)
             {
-                <FluentCard Style="margin-inline: 2%;overflow:auto;height: calc(100% - 0.5%);width:calc(100% - 4%)">
-                    <FluentLayout>
-                        <FluentHeader>
-                            @selectedCase.Title
-                        </FluentHeader>
-
-                        <FluentBodyContent Style="margin: 1%">
-                            <FluentLabel>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
-                            </FluentLabel>
-
-                        </FluentBodyContent>
-                    </FluentLayout>
-                </FluentCard>
+                <CaseDetails Case="selectedCase" />
             }
         </Panel2>
     </FluentSplitter>
