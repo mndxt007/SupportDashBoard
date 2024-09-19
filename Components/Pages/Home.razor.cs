@@ -11,6 +11,7 @@ namespace SupportEngineerEfficiencyDashboard.Components.Pages
         private IDialogReference? _dialog;
         private List<CaseModel> caseModels = new();
         private CaseModel? selectedCase;
+        private bool isCaseSelected => selectedCase == null;
         protected override async Task OnInitializedAsync()
         {
             caseModels = await CaseService.FetchCasesAsync();
@@ -35,6 +36,7 @@ namespace SupportEngineerEfficiencyDashboard.Components.Pages
                     Title = "Analysing Cases...",
                     LoadingText = "Loading...",
                     Logo = FluentSplashScreen.LOGO,
+                    
                 },
                 PreventDismissOnOverlayClick = true,
                 Modal = false,
