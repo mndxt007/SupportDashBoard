@@ -1,0 +1,43 @@
+﻿Analyze the following notes and email for a Technical Support case and produce a SINGLE Json object with following attributes:
+
+1. **Action** (String): 
+   Define the necessary action for the conversation. Possible actions include {{$actions}}. 
+   If the last email's direction is outbound, recommend a 'Follow-up'.
+
+2. **Response** (String): 
+   Draft a full email response aligned with the determined action for the last email message. Do not include a signature.
+
+3. **Sentiment** (String): 
+   Identify the customer's sentiment or mood from the email.
+
+4. **Priority** (Integer): 
+   Establish the urgency of action on a scale of 1 to 10 (10 being highest priority).
+   Consider:
+   - Detected sentiment
+   - Case age
+   - Program Type
+   - Frequency of communication
+
+5. **Health** (Integer): 
+   Represents case health. Possible values:
+   - 1: Red (bad, escalation, poor communications)
+   - 2: Yellow (action pending on engineer, follow-ups needed)
+   - 3: Green (great work on case, customer appreciation, ready for closure)
+
+## Here is the response example
+
+{
+  "Action": "Follow-up",
+  "Response": "Dear [Customer],\n\nThank you for your patience. I've reviewed your case and...",
+  "Sentiment": "Frustrated",
+  "Priority": 8,
+  "Health": 2
+}
+
+## Input Data
+- Emails: {{$emails}}
+- Notes: {{$notes}}
+
+## Response Format
+- Provide only the JSON object without any additional text or explanation.
+- If email content is absent, yield an empty JSON object.

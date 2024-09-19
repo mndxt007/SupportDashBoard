@@ -1,4 +1,5 @@
 using Microsoft.FluentUI.AspNetCore.Components;
+using Microsoft.SemanticKernel;
 using SupportEngineerEfficiencyDashboard.Components;
 using SupportEngineerEfficiencyDashboard.Services;
 
@@ -7,9 +8,19 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
 builder.Services.AddFluentUIComponents();
 
-builder.Services.AddSingleton<ICaseService, CaseService>();
+var kernel = builder.Services.AddKernel();
+kernel.Plugins.AddFromPromptDirectory(Path.Combine(Environment.CurrentDirectory, "Helpers\\Plugins"));
+
+builder.Services.AddAzureOpenAIChatCompletion(
+         deploymentName: builder.Configuration["OpenAI:Deployment"]!,
+         endpoint: builder.Configuration["OpenAI:Endpoint"]!,
+         apiKey: builder.Configuration["OpenAI:Key"]!);
+
+builder.Services.AddSingleton<ICaseDataService, CaseDataService>();
+builder.Services.AddSingleton<CaseAnalysisService>();
 
 var app = builder.Build();
 

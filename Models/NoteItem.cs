@@ -2,22 +2,21 @@
 
 namespace SupportEngineerEfficiencyDashboard.Models
 {
-    public class CaseNote
+    public class NotesModel
     {
         [JsonPropertyName("CaseNumber")]
         public string CaseNumber { get; set; }
         [JsonPropertyName("Notes")]
-        public List<NoteModel> Notes { get; set; }
-
+        public List<NoteItem> Notes { get; set; }
     }
 
     public class NotesRoot
     {
         [JsonPropertyName("CaseNotes")]
-        public List<CaseNote> CaseNotes { get; set; }
+        public List<NotesModel> CaseNotes { get; set; }
     }
 
-    public class NoteModel
+    public class NoteItem
     {
         public string Content { get; set; }
         public string CreatedBy { get; set; }

@@ -4,18 +4,18 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SupportEngineerEfficiencyDashboard.Services
 {
-    public interface ICaseService
+    public interface ICaseDataService
     {
         public Task<List<CaseModel>> FetchCasesAsync();
-        public Task<List<CaseNote>> FetchNotesAsync();
+        public Task<List<NotesModel>> FetchNotesAsync();
 
-        public Task<List<CaseInteraction>> FetchInteractionsAsync();
+        public Task<List<CommunicationModel>> FetchCommunicationsAsync();
     }
 
-    public class CaseService : ICaseService
+    public class CaseDataService : ICaseDataService
     {
         private readonly IWebHostEnvironment environment;
-        public CaseService(IWebHostEnvironment environment)
+        public CaseDataService(IWebHostEnvironment environment)
         {
             this.environment = environment;
         }
@@ -44,14 +44,14 @@ namespace SupportEngineerEfficiencyDashboard.Services
             return caseList;
         }
 
-        public async Task<List<CaseInteraction>> FetchInteractionsAsync()
+        public async Task<List<CommunicationModel>> FetchCommunicationsAsync()
         {
             var interactionsjson = await File.ReadAllTextAsync(Path.Combine(environment.WebRootPath, "casedata", "interactions.json"));
             var interactionsData = JsonSerializer.Deserialize<InteractionsRoot>(interactionsjson);
             return interactionsData?.CaseInteractions?.OrderByDescending(interaction => interaction.Interaction[0].CreatedOn).ToList()!;
         }
 
-        public async Task<List<CaseNote>> FetchNotesAsync()
+        public async Task<List<NotesModel>> FetchNotesAsync()
         {
             var notesjson = await File.ReadAllTextAsync(Path.Combine(environment.WebRootPath, "casedata", "notes.json"));
             var notesRoot = JsonSerializer.Deserialize<NotesRoot>(notesjson);

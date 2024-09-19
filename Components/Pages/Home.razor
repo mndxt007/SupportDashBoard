@@ -3,7 +3,8 @@
 @using SupportEngineerEfficiencyDashboard.Services
 @rendermode InteractiveServer
 @inject IDialogService DialogService
-@inject ICaseService CaseService
+@inject ICaseDataService CaseService
+@inject CaseAnalysisService AnalysisService
 
 <FluentCard>
     <FluentDialogProvider />
@@ -20,6 +21,36 @@
                 <PropertyColumn Property="@(p => p.Title)" Sortable="true" />
                 <PropertyColumn Property="@(p => p.CaseAge.Days)" Sortable="true" />
                 <PropertyColumn Property="@(p => p.ProgramType)" Sortable="true" />
+                <TemplateColumn Title="Priority" Sortable="true">
+                    @if (context.CaseAnalysisModel == null)
+                    {
+                        <FluentProgressRing />
+                    }
+                    else
+                    {
+                        @context.CaseAnalysisModel!.Priority
+                    }
+                </TemplateColumn>
+                <TemplateColumn Title="Sentiment" Sortable="true">
+                    @if (context.CaseAnalysisModel == null)
+                    {
+                        <FluentProgressRing />
+                    }
+                    else
+                    {
+                        @context.CaseAnalysisModel!.Sentiment
+                    }
+                </TemplateColumn>
+                <TemplateColumn Title="Action" Sortable="true">
+                    @if (context.CaseAnalysisModel == null)
+                    {
+                        <FluentProgressRing />
+                    }
+                    else
+                    {
+                        @context.CaseAnalysisModel!.Action
+                    }
+                </TemplateColumn>
             </FluentDataGrid>
             <FluentSpacer />
         </Panel1>
@@ -29,14 +60,14 @@
                 <FluentCard Style="margin-inline: 2%;overflow:auto;height: calc(100% - 0.5%);width:calc(100% - 4%)">
                     <FluentLayout>
                         <FluentHeader>
-                                @selectedCase.Title
+                            @selectedCase.Title
                         </FluentHeader>
 
                         <FluentBodyContent Style="margin: 1%">
                             <FluentLabel>
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
                             </FluentLabel>
-                            
+
                         </FluentBodyContent>
                     </FluentLayout>
                 </FluentCard>

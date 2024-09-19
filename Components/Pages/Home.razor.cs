@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.FluentUI.AspNetCore.Components;
+﻿using Microsoft.FluentUI.AspNetCore.Components;
 using SupportEngineerEfficiencyDashboard.Models;
 using System.Diagnostics;
-using System.Diagnostics.Metrics;
 
 namespace SupportEngineerEfficiencyDashboard.Components.Pages
 {
@@ -10,11 +8,18 @@ namespace SupportEngineerEfficiencyDashboard.Components.Pages
     {
         private IDialogReference? _dialog;
         private List<CaseModel> caseModels = new();
+        private List<CommunicationModel> communicationModel = new();
+        private List<NotesModel> notesModel = new();
+
         private CaseModel? selectedCase;
         private bool isCaseSelected => selectedCase == null;
+        bool loading = true;
+
         protected override async Task OnInitializedAsync()
         {
             caseModels = await CaseService.FetchCasesAsync();
+            communicationModel = await CaseService.FetchCommunicationsAsync();
+            notesModel = await CaseService.FetchNotesAsync();
         }
 
         protected override async Task OnAfterRenderAsync(bool first)
@@ -22,6 +27,9 @@ namespace SupportEngineerEfficiencyDashboard.Components.Pages
             if (first)
             {
                 await OpenSplashDefaultAsync();
+                await FetchCaseAnalysisAsync(caseModels);
+                loading = false;
+                StateHasChanged();
             }
         }
 
@@ -36,7 +44,7 @@ namespace SupportEngineerEfficiencyDashboard.Components.Pages
                     Title = "Analysing Cases...",
                     LoadingText = "Loading...",
                     Logo = FluentSplashScreen.LOGO,
-                    
+
                 },
                 PreventDismissOnOverlayClick = true,
                 Modal = false,
@@ -48,11 +56,11 @@ namespace SupportEngineerEfficiencyDashboard.Components.Pages
             var splashScreen = (SplashScreenContent)_dialog.Instance.Content;
 
             // Simulate a first task
-            await Task.Delay(2000);
+            await Task.Delay(500);
 
             // Update the splash screen content and simulate a second task
             splashScreen.UpdateLabels(loadingText: "Second task...");
-            await Task.Delay(2000);
+            await Task.Delay(500);
 
             await _dialog.CloseAsync();
 
@@ -68,7 +76,26 @@ namespace SupportEngineerEfficiencyDashboard.Components.Pages
         private void HandleRowFocus(FluentDataGridRow<CaseModel> row)
         {
             Debug.WriteLine($"[Custom comparer] Row focused: {row.Item?.CaseNumber}");
-            selectedCase = row.Item;    
+            selectedCase = row.Item;
+        }
+
+        private async Task FetchCaseAnalysisAsync(List<CaseModel> caseModels)
+        {
+            caseModels.ForEach(item => {
+                item.CommunicationModel = communicationModel.Find(x => x.CaseNumber == item.CaseNumber)!;
+                item.NotesModel = notesModel.Find(x => x.CaseNumber == item.CaseNumber)!;
+            });
+
+            await Parallel.ForEachAsync(caseModels, new ParallelOptions { MaxDegreeOfParallelism = 1 }, async (caseModel, cancellationToken) =>
+            {
+                await ProcessCaseAsync(caseModel, cancellationToken);
+            });
+        }
+
+        private async Task ProcessCaseAsync(CaseModel caseModel, CancellationToken cts)
+        {
+            caseModel.CaseAnalysisModel = await AnalysisService.AnalyzeCase(caseModel);
+            await InvokeAsync(StateHasChanged);
         }
     }
 }

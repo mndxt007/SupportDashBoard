@@ -2,23 +2,22 @@
 
 namespace SupportEngineerEfficiencyDashboard.Models
 {
-    public class CaseInteraction
+    public class CommunicationModel
     {
         [JsonPropertyName("CaseNumber")]
         public string CaseNumber { get; set; }
         [JsonPropertyName("Interaction")]
-        public List<InteractionModel> Interaction { get; set; }
+        public List<CommunicationItem> Interaction { get; set; }
 
     }
 
     public class InteractionsRoot
     {
         [JsonPropertyName("InteractionsRoot")]
-        public List<CaseInteraction> CaseInteractions { get; set; }
+        public List<CommunicationModel> CaseInteractions { get; set; }
     }
 
-
-    public class InteractionModel
+    public class CommunicationItem
     {
         public string FromAddress { get; set; }
         public List<string> ToAddresses { get; set; }
