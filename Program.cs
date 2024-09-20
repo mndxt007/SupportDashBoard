@@ -12,7 +12,7 @@ builder.Services.AddRazorComponents()
 builder.Services.AddFluentUIComponents();
 
 var kernel = builder.Services.AddKernel();
-kernel.Plugins.AddFromPromptDirectory(Path.Combine(Environment.CurrentDirectory, "Helpers\\Plugins"));
+kernel.Plugins.AddFromPromptDirectory("Helpers\\Plugins");
 
 builder.Services.AddAzureOpenAIChatCompletion(
          deploymentName: builder.Configuration["OpenAI:Deployment"]!,
