@@ -22,8 +22,8 @@
                 <PropertyColumn Property="@(p => p.Title)" Sortable="true" />
                 <PropertyColumn Property="@(p => p.CaseAge.Days)" Sortable="true" />
                 <PropertyColumn Property="@(p => p.ProgramType)" Sortable="true" />
-                <TemplateColumn Title="Priority" Sortable="true">
-                    @if (context.CaseAnalysisModel == null)
+                <TemplateColumn Title="Priority" Sortable="true" SortBy="@sortByPriority">
+                    @if (context.CaseAnalysisModel.Priority == int.MinValue)
                     {
                         <FluentProgressRing />
                     }
@@ -32,8 +32,8 @@
                         @context.CaseAnalysisModel!.Priority
                     }
                 </TemplateColumn>
-                <TemplateColumn Title="Sentiment" Sortable="true">
-                    @if (context.CaseAnalysisModel == null)
+                <TemplateColumn Title="Sentiment" Sortable="true" SortBy="@sortBySentiment">
+                    @if (string.IsNullOrEmpty(context.CaseAnalysisModel.Sentiment))
                     {
                         <FluentProgressRing />
                     }
@@ -42,8 +42,8 @@
                         @context.CaseAnalysisModel!.Sentiment
                     }
                 </TemplateColumn>
-                <TemplateColumn Title="Action" Sortable="true">
-                    @if (context.CaseAnalysisModel == null)
+                <TemplateColumn Title="Action" Sortable="true" SortBy="@sortByAction">
+                    @if (string.IsNullOrEmpty(context.CaseAnalysisModel.Action))
                     {
                         <FluentProgressRing />
                     }

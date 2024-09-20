@@ -11,7 +11,7 @@ namespace SupportEngineerEfficiencyDashboard.Models
         public string ProgramType { get; set; }
         public CommunicationModel CommunicationModel { get; set; }
         public NotesModel NotesModel { get; set; }
-        public CaseAnalysisModel CaseAnalysisModel { get; set; }
+        public CaseAnalysisModel CaseAnalysisModel { get; set; } = new();
     }
 
     public class TableParameters

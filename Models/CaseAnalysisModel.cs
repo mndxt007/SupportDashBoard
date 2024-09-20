@@ -2,10 +2,10 @@
 {
     public class CaseAnalysisModel
     {
-        public string Action { get; set; }
-        public string Response { get; set; }
-        public string Sentiment { get; set; }
-        public int Priority { get; set; }
-        public int Health { get; set; }
+        public string Action { get; set; } = string.Empty;
+        public string Response { get; set; } = string.Empty;
+        public string Sentiment { get; set; } = string.Empty;
+        public int Priority { get; set; } = int.MinValue;
+        public int Health { get; set; } = int.MinValue;
     }
 }

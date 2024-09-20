@@ -97,5 +97,16 @@ namespace SupportEngineerEfficiencyDashboard.Components.Pages
             caseModel.CaseAnalysisModel = await AnalysisService.AnalyzeCase(caseModel);
             await InvokeAsync(StateHasChanged);
         }
+
+        private GridSort<CaseModel> sortByPriority = GridSort<CaseModel>
+            .ByAscending(p => p.CaseAnalysisModel.Priority).ThenAscending(p => p.CaseAnalysisModel.Priority);
+
+
+        private GridSort<CaseModel> sortBySentiment = GridSort<CaseModel>
+            .ByAscending(p => p.CaseAnalysisModel.Priority).ThenAscending(p => p.CaseAnalysisModel.Sentiment);
+
+
+        private GridSort<CaseModel> sortByAction = GridSort<CaseModel>
+            .ByAscending(p => p.CaseAnalysisModel.Action).ThenAscending(p => p.CaseAnalysisModel.Action);
     }
 }
