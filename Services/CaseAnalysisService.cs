@@ -21,8 +21,8 @@ namespace SupportEngineerEfficiencyDashboard.Services
             var argument = new KernelArguments()
             {
                 ["actions"] = JsonSerializer.Serialize(new Actions()),
-                ["emails"] = JsonSerializer.Serialize(caseModel.CommunicationModel.CaseEmails),
-                ["notes"] = JsonSerializer.Serialize(caseModel.NotesModel.Notes),
+                ["emails"] = JsonSerializer.Serialize(caseModel.CommunicationModel.CaseEmails.Take(3)),
+                ["notes"] = JsonSerializer.Serialize(caseModel.NotesModel.Notes.Take(3)),
             };
 
             var caseAnalysis = await _kernel.InvokeAsync("plugins", "notes_summary", argument);
