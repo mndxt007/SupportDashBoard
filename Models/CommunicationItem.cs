@@ -7,7 +7,7 @@ namespace SupportEngineerEfficiencyDashboard.Models
         [JsonPropertyName("CaseNumber")]
         public string CaseNumber { get; set; }
         [JsonPropertyName("Interaction")]
-        public List<CommunicationItem> Interaction { get; set; }
+        public List<CommunicationItem> CaseEmails { get; set; }
 
     }
 

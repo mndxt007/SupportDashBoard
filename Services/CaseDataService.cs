@@ -48,7 +48,7 @@ namespace SupportEngineerEfficiencyDashboard.Services
         {
             var interactionsjson = await File.ReadAllTextAsync(Path.Combine(environment.WebRootPath, "casedata", "interactions.json"));
             var interactionsData = JsonSerializer.Deserialize<InteractionsRoot>(interactionsjson);
-            return interactionsData?.CaseInteractions?.OrderByDescending(interaction => interaction.Interaction[0].CreatedOn).ToList()!;
+            return interactionsData?.CaseInteractions?.OrderByDescending(interaction => interaction.CaseEmails[0].CreatedOn).ToList()!;
         }
 
         public async Task<List<NotesModel>> FetchNotesAsync()

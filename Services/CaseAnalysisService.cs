@@ -21,7 +21,7 @@ namespace SupportEngineerEfficiencyDashboard.Services
             var argument = new KernelArguments()
             {
                 ["actions"] = JsonSerializer.Serialize(new Actions()),
-                ["emails"] = JsonSerializer.Serialize(caseModel.CommunicationModel.Interaction),
+                ["emails"] = JsonSerializer.Serialize(caseModel.CommunicationModel.CaseEmails),
                 ["notes"] = JsonSerializer.Serialize(caseModel.NotesModel.Notes),
             };
 

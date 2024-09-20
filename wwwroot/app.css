@@ -189,3 +189,9 @@ code {
         right: unset;
     }
 }
+
+pre {
+    overflow: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
