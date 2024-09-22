@@ -7,10 +7,10 @@
         <div class="card-body">
             <PreviewCard Title="Case Description" Text="@Case.IssueDescription" />
             <div class="row align-items-center my-2">
-                <DetailCard Title="Action" Value=@Case.CaseAnalysisModel.Action IconClass="fa-tasks" IconColor="springgreen" />
+                <DetailCard Title="Action" Value=@Case.CaseAnalysisModel.Action IconClass="fa-tasks" IconColor="springgreen"  />
                 <DetailCard Title="Sentiment" Value=@Case.CaseAnalysisModel.Sentiment IconClass="fa-heartbeat" IconColor="red" />
                 <DetailCard Title="Priority" Value=@Case.CaseAnalysisModel.Priority.ToString() IconClass="fa-exclamation-triangle" IconColor="deepskyblue" />
-                <DetailCard Title="Health" Value=@GetEmojiClass(Case.CaseAnalysisModel.Health.ToString()) IconClass="fa-comments" IconColor="#63E6BE" />
+                <DetailCard Title="Health" Value=@GetEmojiClass(Case.CaseAnalysisModel.Health.ToString()) IconClass="fa-comments" IconColor="#63E6BE"  />
             </div>
             <div class="card">
                 <div class="card-header">
@@ -51,7 +51,7 @@
                             <h6 class="card-title text-primary">
                                 Notes
                             </h6>
-                            <h7 class="card-subtitle mb-2 text-muted">Last Email on @Case.NotesModel.Notes.FirstOrDefault().CreatedOn</h7>
+                            <h7 class="card-subtitle mb-2 text-muted">Last Note on @Case.NotesModel.Notes.FirstOrDefault().CreatedOn</h7>
                         </div>
                     </div>
                 </div>

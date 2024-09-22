@@ -44,14 +44,11 @@ namespace SupportEngineerEfficiencyDashboard.Components.Pages
                     Title = "Support Engineer DashBoard",
                     SubTitle = "Prioritized view of your Case Bin.",
                     LoadingText = "Processing........",
-                    Logo = FluentSplashScreen.LOGO,
                     Message = (Microsoft.AspNetCore.Components.MarkupString?)"Please wait while we analyse the cases.",
 
                 },
                 PreventDismissOnOverlayClick = true,
                 Modal = true,
-                Width = "50%",
-                Height = "60%",
             };
             _dialog = await DialogService.ShowSplashScreenAsync(parameters);
 
