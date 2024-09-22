@@ -25,7 +25,7 @@ namespace SupportEngineerEfficiencyDashboard.Services
                 ["notes"] = JsonSerializer.Serialize(caseModel.NotesModel.Notes.Take(3)),
                 ["case"] = JsonSerializer.Serialize(new
                 {
-                    CaseAge = caseModel.CaseAge.TotalDays,
+                    CaseAgeDays = caseModel.CaseAge.TotalDays,
                     caseModel.ProgramType
                 })
             };
