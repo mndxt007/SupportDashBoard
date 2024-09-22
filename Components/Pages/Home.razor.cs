@@ -40,29 +40,20 @@ namespace SupportEngineerEfficiencyDashboard.Components.Pages
             {
                 Content = new()
                 {
-                    DisplayTime = 0,    // See Task.Delay below
-                    Title = "Analysing Cases...",
-                    LoadingText = "Loading...",
+                    DisplayTime = 4000,    // See Task.Delay below
+                    Title = "Support Engineer DashBoard",
+                    SubTitle = "Priritzed view of your Case Bin.",
+                    LoadingText = "processing........",
                     Logo = FluentSplashScreen.LOGO,
+                    Message = (Microsoft.AspNetCore.Components.MarkupString?)"Please wait while we analyse the cases.",
 
                 },
                 PreventDismissOnOverlayClick = true,
-                Modal = false,
-                Width = "400px",
-                Height = "400px",
+                Modal = true,
+                Width = "50%",
+                Height = "60%",
             };
             _dialog = await DialogService.ShowSplashScreenAsync(parameters);
-
-            var splashScreen = (SplashScreenContent)_dialog.Instance.Content;
-
-            // Simulate a first task
-            await Task.Delay(500);
-
-            // Update the splash screen content and simulate a second task
-            splashScreen.UpdateLabels(loadingText: "Second task...");
-            await Task.Delay(500);
-
-            await _dialog.CloseAsync();
 
             DialogResult result = await _dialog.Result;
             await HandleDefaultSplashAsync(result);

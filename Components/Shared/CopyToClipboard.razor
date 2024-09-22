@@ -1,0 +1,35 @@
+﻿@inject IJSRuntime _jsInterop
+
+<div class="d-grid gap-2 col-4 mx-auto">
+    <button @onclick="OnClick" class="@buttonClass">@buttonText</button>
+</div>
+
+
+@code {
+    [Parameter]
+    public string TextToCopy { get; set; } = default!;
+
+    private const string _copyToClipboardText = "Copy";
+    private const string _copiedToClipboardText = "Copied!";
+
+    private const string _defaultClass = "btn btn-primary";
+    private const string _successClass = "btn btn-success";
+
+    private string buttonText = _copyToClipboardText;
+    private string buttonClass = _defaultClass;
+ 
+    private async Task OnClick()
+    {
+        await _jsInterop.InvokeVoidAsync("navigator.clipboard.writeText", TextToCopy);
+
+        buttonText = _copiedToClipboardText;
+        buttonClass = _successClass;
+
+        StateHasChanged();
+        await Task.Delay(TimeSpan.FromSeconds(2));
+
+        buttonText = _copyToClipboardText;
+        buttonClass = _defaultClass;
+    }
+
+}

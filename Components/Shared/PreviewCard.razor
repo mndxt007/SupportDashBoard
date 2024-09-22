@@ -1,0 +1,15 @@
+﻿<div class="card child-card">
+    <div class="card-content">
+        <div class="card-header">
+            <h6>@Title</h6>
+        </div>
+        <div class="card-body">
+            <pre class="card-text"> @(new MarkupString(Text.Length <= 400 ? Text : Text.Substring(0, 400)))</pre>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string? Title { get; set; }
+    [Parameter] public string? Text { get; set; }
+}
