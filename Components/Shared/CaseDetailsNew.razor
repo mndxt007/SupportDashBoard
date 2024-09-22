@@ -17,15 +17,15 @@
                     <div class="row">
                         <!-- Use Flexbox to center the icon inside the button -->
                         <div class="col-1 d-flex justify-content-center align-items-center">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#emailsCollapse" aria-expanded="false" aria-controls="emailsCollapse" @onclick="@Toggle">
-                                <i class="@AIcon" style="color:lightgreen"></i>
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#emailsCollapse" aria-expanded="false" aria-controls="emailsCollapse" @onclick="@EmailToggle">
+                                <i class="@EmailIcon" style="color:green"></i>
                             </button>
                         </div>
                         <div class="col">
-                            <h5 class="card-title text-primary">
+                            <h6 class="card-title text-primary">
                                 Emails
-                            </h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Last Email on @Case.CommunicationModel.CaseEmails.FirstOrDefault().CreatedOn</h6>
+                            </h6>
+                            <h7 class="card-subtitle mb-2 text-muted">Last Email on @Case.CommunicationModel.CaseEmails.FirstOrDefault().CreatedOn</h7>
                         </div>
                     </div>
                 </div>
@@ -34,6 +34,32 @@
                         @foreach (var item in Case.CommunicationModel.CaseEmails.Where(item => !String.IsNullOrEmpty(item.Summary)).Take(3))
                         {
                             <EmailCard Communication="@item" />
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <!-- Use Flexbox to center the icon inside the button -->
+                        <div class="col-1 d-flex justify-content-center align-items-center">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#notesCollapse" aria-expanded="false" aria-controls="notesCollapse" @onclick="@NotesToggle">
+                                <i class="@NotesIcon" style="color:green"></i>
+                            </button>
+                        </div>
+                        <div class="col">
+                            <h6 class="card-title text-primary">
+                                Notes
+                            </h6>
+                            <h7 class="card-subtitle mb-2 text-muted">Last Email on @Case.NotesModel.Notes.FirstOrDefault().CreatedOn</h7>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="notesCollapse">
+                    <div class="card-body" id="notes">
+                        @foreach (var item in Case.NotesModel.Notes.Where(item => !String.IsNullOrEmpty(item.Content)).Take(3))
+                        {
+                            <NotesCard Note="@item" />
                         }
                     </div>
                 </div>
@@ -63,7 +89,8 @@
 @code {
     [Parameter]
     public CaseModel Case { get; set; }
-    public string AIcon { get; set; } = "fa fa-arrow-up";
+    public string EmailIcon { get; set; } = "fa fa-arrow-up";
+    public string NotesIcon { get; set; } = "fa fa-arrow-up";
 
     private string GetEmojiClass(string health)
     {
@@ -76,8 +103,12 @@
         };
     }
 
-    private void Toggle()
+    private void EmailToggle()
     {
-        AIcon = AIcon == "fa fa-arrow-up" ? "fa fa-arrow-down" : "fa fa-arrow-up";
+        EmailIcon = EmailIcon == "fa fa-arrow-up" ? "fa fa-arrow-down" : "fa fa-arrow-up";
+    }
+    private void NotesToggle()
+    {
+        NotesIcon = NotesIcon == "fa fa-arrow-up" ? "fa fa-arrow-down" : "fa fa-arrow-up";
     }
 }

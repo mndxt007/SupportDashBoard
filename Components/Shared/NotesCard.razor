@@ -1,0 +1,19 @@
+﻿<div class="card child-card">
+    <div class="card-content">
+        <div class="card-header">
+            <div class="media d-flex justify-content-between">
+                <div class="media-body text-left">
+                    <h6 class="card-title">@Note.CreatedBy</h6>
+                    <span>@Note.CreatedOn</span>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <pre class="card-text"> @Note.Content</pre>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public NoteItem? Note { get; set; }
+}
