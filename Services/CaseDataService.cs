@@ -37,6 +37,7 @@ namespace SupportEngineerEfficiencyDashboard.Services
                     Title = case1[headers.IndexOf("Title")],
                     IssueDescription = case1[headers.IndexOf("IssueDescription")],
                     CaseAge = TimeSpan.FromMinutes(Double.Parse(case1[headers.IndexOf("CaseAge")])),
+                    State = case1[headers.IndexOf("StateAnnotation")],
                     ProgramType = case1[headers.IndexOf("ProgramType")],
                 });
             };

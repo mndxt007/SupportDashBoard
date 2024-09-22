@@ -23,6 +23,11 @@ namespace SupportEngineerEfficiencyDashboard.Services
                 ["actions"] = JsonSerializer.Serialize(new Actions()),
                 ["emails"] = JsonSerializer.Serialize(caseModel.CommunicationModel.CaseEmails.Take(3)),
                 ["notes"] = JsonSerializer.Serialize(caseModel.NotesModel.Notes.Take(3)),
+                ["case"] = JsonSerializer.Serialize(new
+                {
+                    CaseAge = caseModel.CaseAge.TotalDays,
+                    caseModel.ProgramType
+                })
             };
 
             var caseAnalysis = await _kernel.InvokeAsync("plugins", "notes_summary", argument);

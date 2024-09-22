@@ -7,6 +7,7 @@ namespace SupportEngineerEfficiencyDashboard.Models
         public string CaseNumber { get; set; }
         public string Title { get; set; }
         public string IssueDescription { get; set; }
+        public string State { get; set; }
         public TimeSpan CaseAge { get; set; }
         public string ProgramType { get; set; }
         public CommunicationModel CommunicationModel { get; set; }

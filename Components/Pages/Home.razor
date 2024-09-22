@@ -1,4 +1,5 @@
 ﻿@page "/"
+@attribute [StreamRendering]
 @using SupportEngineerEfficiencyDashboard.Components.Shared
 @using SupportEngineerEfficiencyDashboard.Models
 @using SupportEngineerEfficiencyDashboard.Services
@@ -16,11 +17,11 @@
                             TGridItem="CaseModel"
                             OnRowFocus="HandleRowFocus"
                             Style="overflow:auto;"
-                            AutoFit="true"
                             ShowHover="true">
                 <PropertyColumn Property="@(p => p.CaseNumber)" Sortable="true" />
                 <PropertyColumn Property="@(p => p.Title)" Sortable="true" />
                 <PropertyColumn Property="@(p => p.CaseAge.Days)" Sortable="true" />
+                <PropertyColumn Property="@(p => p.State)" Sortable="true" />
                 <PropertyColumn Property="@(p => p.ProgramType)" Sortable="true" />
                 <TemplateColumn Title="Priority" Sortable="true" SortBy="@sortByPriority" IsDefaultSortColumn="true" InitialSortDirection="SortDirection.Descending">
                     @if (context.CaseAnalysisModel.Priority == int.MinValue)

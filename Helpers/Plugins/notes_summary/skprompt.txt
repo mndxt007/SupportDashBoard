@@ -15,7 +15,7 @@
    Consider:
    - Detected sentiment
    - Case age
-   - Program Type
+   - Program Type (Customers with Program Type should be give priority)
    - Frequency of communication
 
 5. **Health** (Integer): 
@@ -35,8 +35,18 @@
 }
 
 ## Input Data
-- Emails: {{$emails}}
-- Notes: {{$notes}}
+----------------------
+
+- Case Details
+{{$case}}
+
+- Emails: 
+-----------------
+{{$emails}}
+
+- Notes: 
+------------------
+{{$notes}}
 
 ## Response Format
 - Provide only the JSON object without any additional text or explanation.
