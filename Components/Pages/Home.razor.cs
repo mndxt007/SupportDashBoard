@@ -42,8 +42,8 @@ namespace SupportEngineerEfficiencyDashboard.Components.Pages
                 {
                     DisplayTime = 4000,    // See Task.Delay below
                     Title = "Support Engineer DashBoard",
-                    SubTitle = "Priritzed view of your Case Bin.",
-                    LoadingText = "processing........",
+                    SubTitle = "Prioritized view of your Case Bin.",
+                    LoadingText = "Processing........",
                     Logo = FluentSplashScreen.LOGO,
                     Message = (Microsoft.AspNetCore.Components.MarkupString?)"Please wait while we analyse the cases.",
 
