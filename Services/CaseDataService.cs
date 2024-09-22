@@ -48,16 +48,19 @@ namespace SupportEngineerEfficiencyDashboard.Services
         public async Task<List<CommunicationModel>> FetchCommunicationsAsync()
         {
             var interactionsjson = await File.ReadAllTextAsync(Path.Combine(environment.WebRootPath, "casedata", "interactions.json"));
-            var interactionsData = JsonSerializer.Deserialize<InteractionsRoot>(interactionsjson);
-            return interactionsData?.CaseInteractions?.OrderByDescending(interaction => interaction.CaseEmails[0].CreatedOn).ToList()!;
+            var interactionsRoot = JsonSerializer.Deserialize<InteractionsRoot>(interactionsjson);
+            interactionsRoot?.CaseInteractions.ForEach(x =>
+            x.CaseEmails = x.CaseEmails.OrderByDescending(y => y.CreatedOn).ToList());
+            return interactionsRoot?.CaseInteractions!;
         }
 
         public async Task<List<NotesModel>> FetchNotesAsync()
         {
             var notesjson = await File.ReadAllTextAsync(Path.Combine(environment.WebRootPath, "casedata", "notes.json"));
             var notesRoot = JsonSerializer.Deserialize<NotesRoot>(notesjson);
-            notesRoot?.CaseNotes.ForEach(x => x.Notes.OrderByDescending(y => y.CreatedOn));
-            return notesRoot?.CaseNotes ?? [];
+            notesRoot?.CaseNotes.ForEach(x =>
+            x.Notes = x.Notes.OrderByDescending(y => y.CreatedOn).ToList());
+            return notesRoot?.CaseNotes!;
         }
     }
 }
