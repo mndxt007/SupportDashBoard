@@ -22,7 +22,7 @@
                 <PropertyColumn Property="@(p => p.Title)" Sortable="true" />
                 <PropertyColumn Property="@(p => p.CaseAge.Days)" Sortable="true" />
                 <PropertyColumn Property="@(p => p.ProgramType)" Sortable="true" />
-                <TemplateColumn Title="Priority" Sortable="true" SortBy="@sortByPriority">
+                <TemplateColumn Title="Priority" Sortable="true" SortBy="@sortByPriority" IsDefaultSortColumn="true" InitialSortDirection="SortDirection.Descending">
                     @if (context.CaseAnalysisModel.Priority == int.MinValue)
                     {
                         <FluentProgressRing />

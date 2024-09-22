@@ -14,6 +14,17 @@ builder.Services.AddFluentUIComponents();
 var kernel = builder.Services.AddKernel();
 kernel.Plugins.AddFromPromptDirectory("Helpers\\Plugins");
 
+//for capturing requests in Fiddler
+if(builder.Environment.IsDevelopment())
+{
+    builder.Services.AddHttpClient("default")
+    .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+    {
+        CheckCertificateRevocationList = false
+    });
+}
+
+
 builder.Services.AddAzureOpenAIChatCompletion(
          deploymentName: builder.Configuration["OpenAI:Deployment"]!,
          endpoint: builder.Configuration["OpenAI:Endpoint"]!,

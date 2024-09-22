@@ -86,7 +86,7 @@ namespace SupportEngineerEfficiencyDashboard.Components.Pages
                 item.NotesModel = notesModel.Find(x => x.CaseNumber == item.CaseNumber)!;
             });
 
-            await Parallel.ForEachAsync(caseModels, new ParallelOptions { MaxDegreeOfParallelism = 1 }, async (caseModel, cancellationToken) =>
+            await Parallel.ForEachAsync(caseModels, async (caseModel, cancellationToken) =>
             {
                 await ProcessCaseAsync(caseModel, cancellationToken);
             });
