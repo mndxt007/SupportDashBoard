@@ -1,0 +1,29 @@
+﻿<div class="card child-card">
+    <div class="card-content">
+        <div class="card-header">
+            <div class="media d-flex justify-content-between">
+                <div class="media-body text-left">
+                    <h6 class="card-title">@Communication.FromAddress</h6>
+                    <span>@Communication.CreatedOn</span>
+                </div>
+                <div class="align-self-center">
+                    @if (Communication.Direction == "Inbound")
+                    {
+                        <i class=@($"fa fa-arrow-down fa-2x") style="color:lightcoral"></i>
+                    }
+                    @if (Communication.Direction == "Outbound")
+                    {
+                    <i class=@($"fa fa-arrow-up fa-2x") style="color:lightgreen"></i>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <pre class="card-text"> @Communication.Summary</pre>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public CommunicationItem? Communication { get; set; }
+}

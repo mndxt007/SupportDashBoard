@@ -1,0 +1,37 @@
+﻿<div class="@CombinedClass">
+    <div class="card child-card">
+        <div class="card-content">
+            <div class="card-body">
+                <div class="media d-flex justify-content-between">
+                    <div class="media-body text-left">
+                        <h6 class="card-title">@Value</h6>
+                        <span>@Title</span>
+                    </div>
+                    <div class="align-self-center">
+                        <i class=@($"fa {IconClass} fa-2x") style="color:@IconColor;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string? Title { get; set; }
+    [Parameter] public string? Value { get; set; }
+    [Parameter] public string IconClass { get; set; } = "";
+    [Parameter] public string IconColor { get; set; } = "black";
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string CombinedClass => GetClassFromAttributes() ?? "col";
+
+    private string? GetClassFromAttributes()
+    {
+        if (AdditionalAttributes != null && AdditionalAttributes.TryGetValue("class", out var objClass) && objClass is string classStr)
+        {
+            return classStr;
+        }
+        return null;
+    }
+
+}

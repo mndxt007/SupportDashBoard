@@ -195,3 +195,8 @@ pre {
     white-space: pre-wrap;
     word-wrap: break-word;
 }
+
+.card-content .card-header {
+    background-color: rgb(3, 106, 196) !important;
+    color: white !important;
+}

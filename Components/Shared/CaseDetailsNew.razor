@@ -1,0 +1,83 @@
+﻿<div class="col" style=" margin: 2%; margin-top: 0%; height: calc(100% - 4%); width: calc(96%);">
+    <div class="card ">
+        <div class="card-header text-center">
+            <h5 class="card-title text-primary">@Case.Title</h5>
+            <h6 class="card-subtitle mb-2 text-muted">@Case.CaseNumber</h6>
+        </div>
+        <div class="card-body">
+            <PreviewCard Title="Case Description" Text="@Case.IssueDescription" />
+            <div class="row align-items-center my-2">
+                <DetailCard Title="Action" Value=@Case.CaseAnalysisModel.Action IconClass="fa-tasks" IconColor="springgreen" />
+                <DetailCard Title="Sentiment" Value=@Case.CaseAnalysisModel.Sentiment IconClass="fa-heartbeat" IconColor="red" />
+                <DetailCard Title="Priority" Value=@Case.CaseAnalysisModel.Priority.ToString() IconClass="fa-exclamation-triangle" IconColor="deepskyblue" />
+                <DetailCard Title="Health" Value=@GetEmojiClass(Case.CaseAnalysisModel.Health.ToString()) IconClass="fa-comments" IconColor="#63E6BE" />
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <!-- Use Flexbox to center the icon inside the button -->
+                        <div class="col-1 d-flex justify-content-center align-items-center">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#emailsCollapse" aria-expanded="false" aria-controls="emailsCollapse" @onclick="@Toggle">
+                                <i class="@AIcon" style="color:lightgreen"></i>
+                            </button>
+                        </div>
+                        <div class="col">
+                            <h5 class="card-title text-primary">
+                                Emails
+                            </h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Last Email on @Case.CommunicationModel.CaseEmails.FirstOrDefault().CreatedOn</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="emailsCollapse">
+                    <div class="card-body" id="emails">
+                        @foreach (var item in Case.CommunicationModel.CaseEmails.Where(item => !String.IsNullOrEmpty(item.Summary)).Take(3))
+                        {
+                            <EmailCard Communication="@item" />
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 my-2">
+                <div class="card child-card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <h6 class="card-title">Suggested Response</h6>
+                            <pre>@Case.CaseAnalysisModel.Response</pre>
+                            <CopyToClipboard TextToCopy="@Case.CaseAnalysisModel.Response" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @* <div class="col-12">
+            <div class="d-grid gap-2 col-6 mx-auto pt-2">
+            @* <a class="btn btn-outline-primary" href="@PlanModel?.Message?.WebLink" target="_blank">Open in Browser</a>
+            <button @onclick="@(() => ReplyAll(PlanModel.Message.EntryID, PlanModel?.Response ?? string.Empty))" class="btn btn-primary">Reply All</button>
+            <a class="btn btn-outline-success" href="@GenerateLink()" target="_blank">Open in DfM</a>
+            </div>
+            </div> *@
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public CaseModel Case { get; set; }
+    public string AIcon { get; set; } = "fa fa-arrow-up";
+
+    private string GetEmojiClass(string health)
+    {
+        return health switch
+        {
+            "3" => "😊",
+            "1" => "😡",
+            "2" => "😐",
+            _ => "🤔"
+        };
+    }
+
+    private void Toggle()
+    {
+        AIcon = AIcon == "fa fa-arrow-up" ? "fa fa-arrow-down" : "fa fa-arrow-up";
+    }
+}
