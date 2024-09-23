@@ -15,7 +15,7 @@
    Consider:
    - Detected sentiment
    - Case age
-   - Program Type (Customers with Program Type should be give priority)
+   - Program Type (Customers with Program Type should be given priority)
    - Frequency of communication
 
 5. **Health** (Integer): 
