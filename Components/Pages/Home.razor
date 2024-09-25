@@ -56,6 +56,11 @@
                 </TemplateColumn>
             </FluentDataGrid>
             <FluentSpacer />
+            @if (!caseModels.Any(x=> string.IsNullOrEmpty(x.CaseAnalysisModel.Action)))
+            {
+                <SentimentChart CaseModels="caseModels" />
+                <ActionChart CaseModels="caseModels" />
+            }
         </Panel1>
         <Panel2>
             @if (selectedCase != null)
