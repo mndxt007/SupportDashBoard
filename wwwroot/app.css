@@ -200,3 +200,7 @@ pre {
     background-color: rgb(3, 106, 196) !important;
     color: white !important;
 }
+
+div[slot="1"] {
+    overflow-x: clip;
+}
