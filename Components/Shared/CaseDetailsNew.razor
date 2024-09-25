@@ -8,7 +8,7 @@
             <PreviewCard Title="Case Description" Text="@Case.IssueDescription" />
             <div class="row align-items-center my-2">
                 <DetailCard Title="Action" Value=@Case.CaseAnalysisModel.Action IconClass="fa-tasks" IconColor="springgreen"  />
-                <DetailCard Title="Sentiment" Value=@Case.CaseAnalysisModel.Sentiment IconClass="fa-heartbeat" IconColor="red" />
+                <DetailCard Title="Sentiment" Value=@Case.CaseAnalysisModel.Sentiment IconClass="fa-heartbeat" IconColor="red" Background="@GetColor(Case.CaseAnalysisModel.Sentiment)"/>
                 <DetailCard Title="Priority" Value=@Case.CaseAnalysisModel.Priority.ToString() IconClass="fa-exclamation-triangle" IconColor="deepskyblue" />
                 <DetailCard Title="Health" Value=@GetEmojiClass(Case.CaseAnalysisModel.Health.ToString()) IconClass="fa-comments" IconColor="#63E6BE"  />
             </div>
@@ -111,4 +111,16 @@
     {
         NotesIcon = NotesIcon == "fa fa-arrow-up" ? "fa fa-arrow-down" : "fa fa-arrow-up";
     }
+
+    private string GetColor(string sentiment)
+    {
+        return sentiment switch
+        {
+            "Frustrated" => "#FF8A8A",
+            "Negative" => "#D91656",
+            "Neutral" => "#F0EAAC",
+            "Positive" => "#CCE0AC",
+            _ => "white"
+        };
+    }   
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.FluentUI.AspNetCore.Components;
 using SupportEngineerEfficiencyDashboard.Models;
 using System.Diagnostics;
+using System.Diagnostics.Metrics;
 
 namespace SupportEngineerEfficiencyDashboard.Components.Pages
 {
@@ -14,6 +15,22 @@ namespace SupportEngineerEfficiencyDashboard.Components.Pages
         private CaseModel? selectedCase;
         private bool isCaseSelected => selectedCase == null;
         bool loading = true;
+
+        Func<CaseModel, string?> rowStyle = x => x.CaseAnalysisModel.Priority switch
+        {
+            10 => "background-color: #C62828; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr", // Rich Red
+            9 => "background-color: #EF5350; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr", // Soft Red
+            8 => "background-color: #FF8A65; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr", // Warm Orange
+            7 => "background-color: #FFAB91; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr", // Soft Coral
+            6 => "background-color: #FFCC80; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr", // Light Orange
+            5 => "background-color: #FFF59D; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr", // Soft Yellow
+            4 => "background-color: #DCE775; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr", // Soft Yellow-Green
+            3 => "background-color: #E6EE9C; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr", // Soft Lime Green
+            2 => "background-color: #C5E1A5; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr", // Light Green
+            1 => "background-color: #A5D6A7; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr", // Soft Green
+            _ => "background-color: white; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" // Default for rankings 51 and above
+        };
+
 
         protected override async Task OnInitializedAsync()
         {

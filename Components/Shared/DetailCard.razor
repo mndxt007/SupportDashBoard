@@ -1,7 +1,7 @@
-﻿<div class="@CombinedClass">
+﻿<div class="@CombinedClass" >
     <div class="card child-card my-2">
         <div class="card-content">
-            <div class="card-body">
+            <div class="card-body" style="background-color : @Background">
                 <div class="media d-flex justify-content-between">
                     <div class="media-body text-left">
                         <h6 class="card-title">@Value</h6>
@@ -19,6 +19,7 @@
 @code {
     [Parameter] public string? Title { get; set; }
     [Parameter] public string? Value { get; set; }
+    [Parameter] public string? Background { get; set; } = String.Empty;
     [Parameter] public string IconClass { get; set; } = "";
     [Parameter] public string IconColor { get; set; } = "black";
     [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }

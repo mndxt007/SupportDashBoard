@@ -16,7 +16,8 @@
                             ResizableColumns=true
                             TGridItem="CaseModel"
                             OnRowFocus="HandleRowFocus"
-                            Style="overflow:auto;"
+                            GridTemplateColumns="1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr"
+                            RowStyle="@rowStyle"
                             ShowHover="true">
                 <PropertyColumn Property="@(p => p.CaseNumber)" Sortable="true" />
                 <PropertyColumn Property="@(p => p.Title)" Sortable="true" />
