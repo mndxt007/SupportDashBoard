@@ -1,0 +1,64 @@
+﻿@using ApexCharts
+
+<ApexChart TItem="CaseAgeData" Title="Case Age Distribution" Width="500">
+
+    <ApexPointSeries TItem="CaseAgeData"
+                     Items="CaseAgeDataList"
+                     Name="Case Count"
+                     XValue="@(e => e.AgeRange)"
+                     YAggregate="@(e => e.Sum(e => e.Count))"
+                     SeriesType="SeriesType.Bar"
+                     PointColor="e => GetColor(e)" />
+</ApexChart>
+
+@code {
+    [Parameter]
+    public List<CaseModel> CaseModels { get; set; } = new();
+    private List<CaseAgeData> CaseAgeDataList { get; set; } = new List<CaseAgeData>();
+
+    protected override void OnInitialized()
+    {
+        CaseAgeDataList = GetCaseAgeData(CaseModels);
+    }
+
+    private List<CaseAgeData> GetCaseAgeData(List<CaseModel> cases)
+    {
+        var ageRanges = new[]
+        {
+            new { Max = TimeSpan.FromDays(30), Range = "0-30 days" },
+            new { Max = TimeSpan.FromDays(60), Range = "31-60 days" },
+            new { Max = TimeSpan.FromDays(90), Range = "61-90 days" },
+            new { Max = TimeSpan.FromDays(120), Range = "91-120 days" },
+            new { Max = TimeSpan.MaxValue, Range = "121+ days" }
+        };
+
+        return cases
+            .GroupBy(c => ageRanges.First(r => c.CaseAge <= r.Max).Range)
+            .Select(g => new CaseAgeData { AgeRange = g.Key, Count = g.Count() })
+            .OrderBy(d => d.AgeRange)
+            .ToList();
+    }
+
+    private string GetColor(CaseAgeData caseAgeData)
+    {
+        var ageRanges = new Dictionary<string, string>
+        {
+            { "0-30 days", "#77DD77" },   // Pastel green
+            { "31-60 days", "#FFDD77" },  // Pastel yellow
+            { "61-90 days", "#FFB347" },  // Pastel orange
+            { "91-120 days", "#FF6961" }, // Pastel light red
+            { "121+ days", "#FF5C5C" }    // Pastel red
+        };
+
+        return ageRanges.TryGetValue(caseAgeData.AgeRange, out var color) ? color : "#FFFFFF";
+    }
+
+    public class CaseAgeData
+    {
+        public string AgeRange { get; set; }
+        public int Count { get; set; }
+
+        public string X => AgeRange;
+        public double Y => Count;
+    }
+}

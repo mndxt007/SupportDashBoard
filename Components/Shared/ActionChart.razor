@@ -1,10 +1,10 @@
 ﻿@using ApexCharts
 
-<ApexChart TItem="CaseModel" Title="Action" Options="options" Width="500">
+<ApexChart TItem="CaseModel" Title="Required Action" Options="options" Width="500">
 
     <ApexPointSeries Items="CaseModels"
                      SeriesType="SeriesType.Pie"
-                     Name="Action"
+                     Name="Action Type"
                      XValue="@(e => e.CaseAnalysisModel.Action)"
                      YAggregate="@(e => e.Count(x=> string.Equals(x.CaseAnalysisModel.Action, x.CaseAnalysisModel.Action)))"
                      OrderByDescending="e=>e.Y" ShowDataLabels />

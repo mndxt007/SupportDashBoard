@@ -58,12 +58,15 @@
             <FluentSpacer />
             @if (!caseModels.Any(x => string.IsNullOrEmpty(x.CaseAnalysisModel.Action)))
             {
-                <div class="row card-body d-flex justify-content-center my-2">
-                    <div class="col-auto my-2">
-                        <SentimentChart CaseModels="caseModels" />
-                    </div>
-                    <div class="col-auto my-2">
+                <div class="row card-body d-flex justify-content-evenly" style="margin-top:50px">
+                    <div class="col-auto" style="margin-top:50px">
                         <ActionChart CaseModels="caseModels" />
+                    </div>
+                    <div class="col-auto" style="margin-top:50px">
+                        <CaseAgeChart CaseModels="caseModels" />
+                    </div>
+                    <div class="col-auto" style="margin-top:50px">
+                        <SentimentChart CaseModels="caseModels" />
                     </div>
                 </div>
             }

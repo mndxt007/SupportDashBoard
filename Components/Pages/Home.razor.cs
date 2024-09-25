@@ -99,7 +99,7 @@ namespace SupportEngineerEfficiencyDashboard.Components.Pages
                 {
                     case "6666666666666666":
                         caseModel.CaseAnalysisModel.Priority = 5;
-                        caseModel.CaseAnalysisModel.Sentiment = "Nuetral";
+                        caseModel.CaseAnalysisModel.Sentiment = "Neutral";
                         caseModel.CaseAnalysisModel.Action = "Follow up";
                         caseModel.CaseAnalysisModel.Health = 1;
                         break;
@@ -117,7 +117,7 @@ namespace SupportEngineerEfficiencyDashboard.Components.Pages
                         break;
                     case "4444444444444444":
                         caseModel.CaseAnalysisModel.Priority = 6;
-                        caseModel.CaseAnalysisModel.Sentiment = "Nuetral";
+                        caseModel.CaseAnalysisModel.Sentiment = "Neutral";
                         caseModel.CaseAnalysisModel.Action = "Scoping";
                         caseModel.CaseAnalysisModel.Health = 2;
                         break;
@@ -127,10 +127,8 @@ namespace SupportEngineerEfficiencyDashboard.Components.Pages
                         caseModel.CaseAnalysisModel.Action = "Engage Esc/TA";
                         caseModel.CaseAnalysisModel.Health = 1;
                         break;
-                }
-                
+                }         
             });
-
         }
 
         private async Task ProcessCaseAsync(CaseModel caseModel, CancellationToken cts)

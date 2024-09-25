@@ -1,13 +1,14 @@
 ﻿@using ApexCharts
 
-<ApexChart TItem="CaseModel" Title="Sentiment" Options="options" Width="500">
+<ApexChart TItem="CaseModel" Title="Customer Sentiment" Options="options" Width="500">
 
     <ApexPointSeries Items="CaseModels"
                      SeriesType="SeriesType.Donut"
                      Name="Sentiment"
                      XValue="@(e => e.CaseAnalysisModel.Sentiment)"
                      YAggregate="@(e => e.Count(x=> x.CaseAnalysisModel.Priority == x.CaseAnalysisModel.Priority) )"
-                     OrderByDescending="e=>e.Y" />
+                     OrderByDescending="e=>e.Y"
+                     PointColor="e => GetColor(e)" />
 </ApexChart>
 
 @code {
@@ -30,5 +31,17 @@
                     }
                 }
             };
+    }
+
+    private string GetColor(CaseModel caseModel)
+    {
+        return caseModel.CaseAnalysisModel.Sentiment switch
+        {
+            "Positive" => "#4CAF50",   // Pastel green
+            "Neutral" => "#B2C300",    // Pastel yellow
+            "Negative" => "#FF9800",   // Pastel red
+            "Frustrated" => "#F44336",   // Pastel red
+            _ => "#FFFFFF"
+        };
     }
 }
