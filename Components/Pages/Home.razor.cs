@@ -100,26 +100,31 @@ namespace SupportEngineerEfficiencyDashboard.Components.Pages
                         caseModel.CaseAnalysisModel.Priority = 8;
                         caseModel.CaseAnalysisModel.Sentiment = "Negative";
                         caseModel.CaseAnalysisModel.Action = "Engage Esc/TA";
+                        caseModel.CaseAnalysisModel.Health = 1;
                         break;
                     case "3333333333333333":
                         caseModel.CaseAnalysisModel.Priority = 3;
                         caseModel.CaseAnalysisModel.Sentiment = "Positive";
                         caseModel.CaseAnalysisModel.Action = "Closure";
+                        caseModel.CaseAnalysisModel.Health = 3;
                         break;
                     case "5555555555555555":
-                        caseModel.CaseAnalysisModel.Priority = 6;
-                        caseModel.CaseAnalysisModel.Sentiment = "Nuetral";
-                        caseModel.CaseAnalysisModel.Action = "Follow up";
-                        break;
-                    case "4444444444444444":
                         caseModel.CaseAnalysisModel.Priority = 9;
                         caseModel.CaseAnalysisModel.Sentiment = "Frustrated";
-                        caseModel.CaseAnalysisModel.Action = "Engage Esc/TA";
+                        caseModel.CaseAnalysisModel.Action = "Engage Esc/TA ";
+                        caseModel.CaseAnalysisModel.Health = 1;
+                        break;
+                    case "4444444444444444":
+                        caseModel.CaseAnalysisModel.Priority = 6;
+                        caseModel.CaseAnalysisModel.Sentiment = "Nuetral";
+                        caseModel.CaseAnalysisModel.Action = "Scoping";
+                        caseModel.CaseAnalysisModel.Health = 2;
                         break;
                     case "2222222222222222":
                         caseModel.CaseAnalysisModel.Priority = 4;
                         caseModel.CaseAnalysisModel.Sentiment = "Positive";
                         caseModel.CaseAnalysisModel.Action = "Follow up";
+                        caseModel.CaseAnalysisModel.Health = 3;
                         break;
                 }
                 
