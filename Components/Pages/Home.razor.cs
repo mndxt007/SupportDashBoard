@@ -15,20 +15,21 @@ namespace SupportEngineerEfficiencyDashboard.Components.Pages
         private CaseModel? selectedCase;
         private bool isCaseSelected => selectedCase == null;
         bool loading = true;
+        static readonly string rowstyle = "grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;height: 50px;align-items: center;";
 
         Func<CaseModel, string?> rowStyle = x => x.CaseAnalysisModel.Priority switch
         {
-            10 => "background-color: #C62828; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr", // Rich Red
-            9 => "background-color: #EF5350; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr", // Soft Red
-            8 => "background-color: #FF8A65; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr", // Warm Orange
-            7 => "background-color: #FFAB91; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr", // Soft Coral
-            6 => "background-color: #FFCC80; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr", // Light Orange
-            5 => "background-color: #FFF59D; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr", // Soft Yellow
-            4 => "background-color: #DCE775; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr", // Soft Yellow-Green
-            3 => "background-color: #E6EE9C; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr", // Soft Lime Green
-            2 => "background-color: #C5E1A5; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr", // Light Green
-            1 => "background-color: #A5D6A7; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr", // Soft Green
-            _ => "background-color: white; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr" // Default for rankings 51 and above
+            10 => "background-color: #C62828;" + rowstyle, // Rich Red
+            9 => "background-color: #EF5350; " + rowstyle, // Soft Red
+            8 => "background-color: #FF8A65; " + rowstyle, // Warm Orange
+            7 => "background-color: #FFAB91; " + rowstyle, // Soft Coral
+            6 => "background-color: #FFCC80; " + rowstyle, // Light Orange
+            5 => "background-color: #FFF59D; " + rowstyle, // Soft Yellow
+            4 => "background-color: #DCE775; " + rowstyle, // Soft Yellow-Green
+            3 => "background-color: #E6EE9C; " + rowstyle, // Soft Lime Green
+            2 => "background-color: #C5E1A5; " + rowstyle, // Light Green
+            1 => "background-color: #A5D6A7; " + rowstyle, // Soft Green
+            _ => "background-color: white; " + rowstyle // Default for rankings 51 and above
         };
 
 
@@ -97,9 +98,9 @@ namespace SupportEngineerEfficiencyDashboard.Components.Pages
                 switch (caseModel.CaseNumber)
                 {
                     case "6666666666666666":
-                        caseModel.CaseAnalysisModel.Priority = 8;
-                        caseModel.CaseAnalysisModel.Sentiment = "Negative";
-                        caseModel.CaseAnalysisModel.Action = "Engage Esc/TA";
+                        caseModel.CaseAnalysisModel.Priority = 5;
+                        caseModel.CaseAnalysisModel.Sentiment = "Nuetral";
+                        caseModel.CaseAnalysisModel.Action = "Follow up";
                         caseModel.CaseAnalysisModel.Health = 1;
                         break;
                     case "3333333333333333":
@@ -121,10 +122,10 @@ namespace SupportEngineerEfficiencyDashboard.Components.Pages
                         caseModel.CaseAnalysisModel.Health = 2;
                         break;
                     case "2222222222222222":
-                        caseModel.CaseAnalysisModel.Priority = 4;
-                        caseModel.CaseAnalysisModel.Sentiment = "Positive";
-                        caseModel.CaseAnalysisModel.Action = "Follow up";
-                        caseModel.CaseAnalysisModel.Health = 3;
+                        caseModel.CaseAnalysisModel.Priority = 8;
+                        caseModel.CaseAnalysisModel.Sentiment = "Negative";
+                        caseModel.CaseAnalysisModel.Action = "Engage Esc/TA";
+                        caseModel.CaseAnalysisModel.Health = 1;
                         break;
                 }
                 
