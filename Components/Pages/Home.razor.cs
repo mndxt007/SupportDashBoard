@@ -112,7 +112,7 @@ namespace SupportEngineerEfficiencyDashboard.Components.Pages
                     case "5555555555555555":
                         caseModel.CaseAnalysisModel.Priority = 9;
                         caseModel.CaseAnalysisModel.Sentiment = "Frustrated";
-                        caseModel.CaseAnalysisModel.Action = "Engage Esc/TA ";
+                        caseModel.CaseAnalysisModel.Action = "Engage Esc/TA";
                         caseModel.CaseAnalysisModel.Health = 1;
                         break;
                     case "4444444444444444":

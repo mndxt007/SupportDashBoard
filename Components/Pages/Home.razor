@@ -56,10 +56,16 @@
                 </TemplateColumn>
             </FluentDataGrid>
             <FluentSpacer />
-            @if (!caseModels.Any(x=> string.IsNullOrEmpty(x.CaseAnalysisModel.Action)))
+            @if (!caseModels.Any(x => string.IsNullOrEmpty(x.CaseAnalysisModel.Action)))
             {
-                <SentimentChart CaseModels="caseModels" />
-                <ActionChart CaseModels="caseModels" />
+                <div class="row card-body d-flex justify-content-center my-2">
+                    <div class="col-auto my-2">
+                        <SentimentChart CaseModels="caseModels" />
+                    </div>
+                    <div class="col-auto my-2">
+                        <ActionChart CaseModels="caseModels" />
+                    </div>
+                </div>
             }
         </Panel1>
         <Panel2>
