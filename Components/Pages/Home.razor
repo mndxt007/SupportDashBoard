@@ -15,7 +15,7 @@
             <FluentDataGrid Items="@caseModels.AsQueryable()"
                             ResizableColumns=true
                             TGridItem="CaseModel"
-                            OnRowFocus="HandleRowFocus"
+                            OnRowClick="HandleRowFocus"
                             GridTemplateColumns="1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr"
                             RowStyle="@rowStyle"
                             ShowHover="true">

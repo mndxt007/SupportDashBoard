@@ -28,7 +28,7 @@
 
 {
   "Action": "Follow-up",
-  "Response": "Dear [Customer],\n\nThank you for your patience. I've reviewed your case and...",
+  "Response": "",
   "Sentiment": "Frustrated",
   "Priority": 8,
   "Health": 2
