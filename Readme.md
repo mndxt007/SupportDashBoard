@@ -1,4 +1,4 @@
-# Revolutionizing Support Efficiency
+# Support Engineer DashBoard - Enhanced Case Management with Generative AI
 
 **AI-Powered Case Prioritization, Automated Follow-ups, and Data-Driven Insights to Save Time, Reduce Costs, and Elevate Customer Satisfaction**
 
@@ -56,3 +56,6 @@ Prompt, data-driven responses improve the overall customer experience.
 
 ### 📈 Improved Operational Efficiency
 Reduces idle time and promotes smarter case management.
+
+## Additional details:
+* This is a POC version and needs case data like cases.json, interactions.json, and notes.json to run the code. See the logic in [CaseDataService.cs](Services/Actions.cs) to understand how the data is being used.
